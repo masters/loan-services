@@ -12,7 +12,22 @@
  
 	<context:component-scan base-package="org.rage.loansales.controller" />
 
- 	<mvc:annotation-driven />
+	   <!-- flags annotations for processing -->
+	   <mvc:annotation-driven>
+	      <mvc:message-converters>
+	         <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	            <!-- this property adds a "{} &&" before each json response -->
+	            <property name="prefixJson" value="false" />
+	            <property name="supportedMediaTypes" value="application/json" />
+	            <property name="objectMapper">
+	                <bean class="org.codehaus.jackson.map.ObjectMapper">
+	                  <!-- Avoid that null properties were converted to json -->
+	                  <property name="serializationInclusion" value="NON_NULL"/>
+	                </bean>
+	            </property>
+	         </bean>
+	      </mvc:message-converters>
+	   </mvc:annotation-driven>
  	
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 	  <property name="mediaTypes">
