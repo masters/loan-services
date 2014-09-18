@@ -47,12 +47,15 @@ public class MongoDataProvider implements DataProvider<LoanSales> {
 	 * @param instance
 	 * @return ServiceResponse
 	 * @see org.rage.loadsales.model.interfaces.DataProvider#save(java.lang.Object)
+	 * 
+	 * @TODO improve
 	 */
 	public ServiceResponse save(LoanSales instance) throws RageDataException {
 		BasicDBObject dbObject = new BasicDBObject();
 		LoanHelper.addNewData(instance, Boolean.FALSE);
 		dbObject.put(PROPERTY_NAME_DATA, LoanHelper.toJSON(instance));
 		dbObject.put(PERSON_ID, instance.getPersonId());
+		
 		this.mongoDataFactory.getCollection(COLLECTION_NAME).save(dbObject);
 		return new ServiceResponse(Boolean.TRUE,null,String.valueOf(dbObject.get(PROPERTY_NAME_ID)));
 	}
@@ -96,6 +99,8 @@ public class MongoDataProvider implements DataProvider<LoanSales> {
 	 * @param instance
 	 * @return ServiceResponse
 	 * @see org.rage.loadsales.model.interfaces.DataProvider#update(java.lang.Object)
+	 * 
+	 * @TODO improve
 	 */
 	public ServiceResponse update(LoanSales instance) throws RageDataException {
 		ServiceResponse resultOperation = LoanHelper.buildUpdateResponse(Boolean.TRUE, null);
