@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
-import org.rage.loadsales.model.LoanSales;
-import org.rage.loadsales.model.ServiceResponse;
-import org.rage.loadsales.model.interfaces.DataProvider;
 import org.rage.loan.exception.RageDataException;
 import org.rage.loan.helper.LoanHelper;
+import org.rage.loan.model.Loan;
+import org.rage.loan.model.ServiceResponse;
+import org.rage.loan.model.interfaces.DataProvider;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,15 +22,15 @@ import com.hazelcast.core.HazelcastInstance;
  * @author Hector Mendoza
  * */
 @Component("hazelcastDataProvider")
-public class HazelcastDataProvider implements DataProvider<LoanSales> {
+public class HazelcastDataProvider implements DataProvider<Loan> {
 
 	private transient HazelcastInstance instance;
 	private transient String loanSalesMapName;
 	
-	public ServiceResponse save(LoanSales loanSales) throws RageDataException{
+	public ServiceResponse save(Loan loanSales) throws RageDataException{
 		String id  = null;
 		try{
-			ConcurrentMap<String, LoanSales> map = instance.getMap(loanSalesMapName);
+			ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 			id = LoanHelper.addNewData(loanSales, Boolean.TRUE);
 			map.put(id, loanSales);
 		}catch(Exception ex){
@@ -39,21 +39,21 @@ public class HazelcastDataProvider implements DataProvider<LoanSales> {
 		return new ServiceResponse(Boolean.TRUE, id);
 	}
 	
-	public ServiceResponse update(LoanSales loanSales) throws RageDataException{
-		ConcurrentMap<String, LoanSales> map = instance.getMap(loanSalesMapName);
-		LoanSales old = map.get(loanSales.getId());
+	public ServiceResponse update(Loan loanSales) throws RageDataException{
+		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
+		Loan old = map.get(loanSales.getId());
 		BeanUtils.copyProperties(loanSales, old, new String[]{"id","date"});
 		map.replace(loanSales.getId(), old);
 		return new ServiceResponse(Boolean.TRUE, null);
 	}
 	
-	public LoanSales get(String id){
-		ConcurrentMap<String, LoanSales> map = instance.getMap(loanSalesMapName);
+	public Loan get(String id){
+		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 		return map.get(id);
 	}
 	
 	public ServiceResponse delete(String id){
-		ConcurrentMap<String, LoanSales> map = instance.getMap(loanSalesMapName);
+		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 		map.remove(id);
 		return new ServiceResponse(Boolean.TRUE, null);
 	}
@@ -63,9 +63,9 @@ public class HazelcastDataProvider implements DataProvider<LoanSales> {
 	 * 
 	 * @return ArrayList<LoanSales>
 	 * */
-	public List<LoanSales> getAll() {
-		ConcurrentMap<String, LoanSales> map = instance.getMap(loanSalesMapName);
-		return new ArrayList<LoanSales>(map.values());
+	public List<Loan> getAll() {
+		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
+		return new ArrayList<Loan>(map.values());
 	}
 	
 	@Value("#{systemProperties['hazel.map.loan.name']}")
@@ -82,7 +82,7 @@ public class HazelcastDataProvider implements DataProvider<LoanSales> {
 	/* (non-Javadoc)
 	 * @see org.rage.loadsales.model.interfaces.DataProvider#getAllByPerson(java.lang.String)
 	 */
-	public List<LoanSales> getAllByPerson(String personId) {
+	public List<Loan> getAllByPerson(String personId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

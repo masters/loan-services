@@ -2,8 +2,8 @@ package org.rage.loan.helper;
 
 import java.util.Date;
 
-import org.rage.loadsales.model.LoanSales;
-import org.rage.loadsales.model.ServiceResponse;
+import org.rage.loan.model.Loan;
+import org.rage.loan.model.ServiceResponse;
 
 import com.google.gson.Gson;
 
@@ -20,7 +20,7 @@ public final class LoanHelper {
 	 * @param loan the object with the loan data
 	 * @param addId if the auto-generated id must be set
 	 * */
-	public static String addNewData(LoanSales loan, boolean addId){
+	public static String addNewData(Loan loan, boolean addId){
 		Date now = new Date();
 		loan.setDate(now);
 		loan.setActive(1);

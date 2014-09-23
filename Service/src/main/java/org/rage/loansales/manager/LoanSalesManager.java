@@ -2,9 +2,9 @@ package org.rage.loansales.manager;
 
 import java.util.List;
 
-import org.rage.loadsales.model.LoanSales;
-import org.rage.loadsales.model.ServiceResponse;
 import org.rage.loan.exception.RageDataException;
+import org.rage.loan.model.Loan;
+import org.rage.loan.model.ServiceResponse;
 
 /**
  * Manage all the operations directly from the DataProvider
@@ -15,14 +15,14 @@ public interface LoanSalesManager {
 	 * 
 	 * @param loanSales
 	 * */
-	ServiceResponse saveLoanSales(LoanSales loanSales) throws RageDataException;
+	ServiceResponse saveLoanSales(Loan loanSales) throws RageDataException;
 	
 	/**
 	 * Get a loan by id
 	 * 
 	 * @param id
 	 * */
-	LoanSales getLoanSales(String id);
+	Loan getLoanSales(String id);
 	
 	/**
 	 * Delete a Loan
@@ -38,13 +38,13 @@ public interface LoanSalesManager {
 	 * @param loanSales
 	 * @return ServiceResponse
 	 * */
-	ServiceResponse updateLoanSales(LoanSales loanSales) throws RageDataException;
+	ServiceResponse updateLoanSales(Loan loanSales) throws RageDataException;
 	
 	/**
 	 * Returns a list of all existing loans
 	 * <br>Just for testing purposes</br>
 	 * */
-	List<LoanSales> getAllLoanSales();
+	List<Loan> getAllLoanSales();
 	
 	/**
 	 * Get all loans by a person Id
@@ -52,5 +52,5 @@ public interface LoanSalesManager {
 	 * @param personId
 	 * @return list
 	 * */
-	List<LoanSales> getAllByPerson(String personId);
+	List<Loan> getAllByPerson(String personId);
 }

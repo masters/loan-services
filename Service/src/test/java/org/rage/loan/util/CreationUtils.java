@@ -3,8 +3,8 @@ package org.rage.loan.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.rage.loadsales.model.LoanSales;
-import org.rage.loadsales.model.ServiceResponse;
+import org.rage.loan.model.Loan;
+import org.rage.loan.model.ServiceResponse;
 
 
 public final class CreationUtils {
@@ -13,8 +13,8 @@ public final class CreationUtils {
 		return ServiceResponse.newInstance();
 	}
 	
-	public static LoanSales createLoanObject(){
-		LoanSales loan = new LoanSales();
+	public static Loan createLoanObject(){
+		Loan loan = new Loan();
 		loan.setAmmount(new Double(1500.00));
 		loan.setConcept("concept 1");
 		loan.setPersonId("132456");
@@ -22,8 +22,8 @@ public final class CreationUtils {
 		return loan;
 	}
 	
-	public static List<LoanSales> createLoanSalesList(){
-		List<LoanSales> list = new ArrayList<LoanSales>();
+	public static List<Loan> createLoanSalesList(){
+		List<Loan> list = new ArrayList<Loan>();
 		list.add(createLoanObject());
 		list.add(createLoanObject());
 		return list;

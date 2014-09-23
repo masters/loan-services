@@ -7,8 +7,8 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Assert;
 import org.junit.Test;
-import org.rage.loadsales.model.LoanSales;
-import org.rage.loadsales.model.ServiceResponse;
+import org.rage.loan.model.Loan;
+import org.rage.loan.model.ServiceResponse;
 import org.rage.loan.util.CreationUtils;
 import org.rage.loansales.controller.LoanSalesController;
 import org.rage.loansales.service.LoanSalesService;
@@ -32,7 +32,7 @@ public class LoanControllerTest {
 	
 	@Test
 	public void testSaveOperation(){
-		Capture<LoanSales> capture = new Capture<LoanSales>();
+		Capture<Loan> capture = new Capture<Loan>();
 		EasyMock.expect(loanSalesService.saveLoanSales(EasyMock.capture(capture))).andReturn(CreationUtils.createServiceResponse());
 		
 		EasyMock.replay(loanSalesService);
@@ -44,7 +44,7 @@ public class LoanControllerTest {
 	
 	@Test
 	public void testUpdateOperation(){
-		Capture<LoanSales> capture = new Capture<LoanSales>();
+		Capture<Loan> capture = new Capture<Loan>();
 		EasyMock.expect(loanSalesService.updateLoanSales(EasyMock.capture(capture))).andReturn(CreationUtils.createServiceResponse());
 		
 		EasyMock.replay(loanSalesService);
@@ -74,7 +74,7 @@ public class LoanControllerTest {
 		String id = "132465";
 		
 		EasyMock.replay(loanSalesService);
-		LoanSales response = loanController.get(id);
+		Loan response = loanController.get(id);
 		EasyMock.verify(loanSalesService);
 		
 		Assert.assertNotNull("ID not null", response.getId());
@@ -88,7 +88,7 @@ public class LoanControllerTest {
 		String personId = "132465";
 		
 		EasyMock.replay(loanSalesService);
-		List<LoanSales> response = loanController.listByPersonId(personId);
+		List<Loan> response = loanController.listByPersonId(personId);
 		EasyMock.verify(loanSalesService);
 		
 		Assert.assertNotNull("Valid list", response);

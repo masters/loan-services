@@ -6,7 +6,7 @@ package org.rage.loan.factory;
 
 import java.net.UnknownHostException;
 
-import org.rage.loadsales.model.interfaces.DataFactory;
+import org.rage.loan.model.interfaces.DataFactory;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -26,7 +26,7 @@ public class MongoDataFactory implements DataFactory<DB, DBCollection>{
 
 	/**
 	 * Do pre configuration tasks
-	 * @see org.rage.loadsales.model.interfaces.DataFactory#preConfiguration()
+	 * @see org.rage.loan.model.interfaces.DataFactory#preConfiguration()
 	 */
 	public void preConfiguration() throws UnknownHostException {
 		mongoClient = new MongoClient( url , port );
@@ -34,7 +34,7 @@ public class MongoDataFactory implements DataFactory<DB, DBCollection>{
 
 	/**
 	 * Connect to the Mongo DB
-	 * @see org.rage.loadsales.model.interfaces.DataFactory#connect()
+	 * @see org.rage.loan.model.interfaces.DataFactory#connect()
 	 */
 	public void connect() {
 		try {
@@ -61,7 +61,7 @@ public class MongoDataFactory implements DataFactory<DB, DBCollection>{
 	
 	/**
 	 * Close the connection
-	 * @see org.rage.loadsales.model.interfaces.DataFactory#shutdown()
+	 * @see org.rage.loan.model.interfaces.DataFactory#shutdown()
 	 */
 	public void shutdown() {
 		mongoClient.close();

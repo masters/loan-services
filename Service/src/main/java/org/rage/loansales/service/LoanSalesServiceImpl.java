@@ -2,10 +2,10 @@ package org.rage.loansales.service;
 
 import java.util.List;
 
-import org.rage.loadsales.model.LoanSales;
-import org.rage.loadsales.model.ServiceResponse;
 import org.rage.loan.exception.RageDataException;
 import org.rage.loan.helper.LoanHelper;
+import org.rage.loan.model.Loan;
+import org.rage.loan.model.ServiceResponse;
 import org.rage.loansales.manager.LoanSalesManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +19,7 @@ public class LoanSalesServiceImpl implements LoanSalesService{
 	}
 
 
-	public ServiceResponse saveLoanSales(LoanSales loanSales) {
+	public ServiceResponse saveLoanSales(Loan loanSales) {
 		try {
 			return loanSalesManager.saveLoanSales(loanSales);
 		} catch (RageDataException e) {
@@ -28,7 +28,7 @@ public class LoanSalesServiceImpl implements LoanSalesService{
 		}
 	}
 	
-	public ServiceResponse updateLoanSales(LoanSales loanSales) {
+	public ServiceResponse updateLoanSales(Loan loanSales) {
 		try {
 			return loanSalesManager.updateLoanSales(loanSales);
 		} catch (RageDataException e) {
@@ -36,7 +36,7 @@ public class LoanSalesServiceImpl implements LoanSalesService{
 		}
 	}
 
-	public LoanSales getLoanSales(String id){
+	public Loan getLoanSales(String id){
 		return loanSalesManager.getLoanSales(id);
 	}
 
@@ -46,7 +46,7 @@ public class LoanSalesServiceImpl implements LoanSalesService{
 	}
 
 
-	public List<LoanSales> getAllLoanSales() {
+	public List<Loan> getAllLoanSales() {
 		return loanSalesManager.getAllLoanSales();
 	}
 
@@ -54,7 +54,7 @@ public class LoanSalesServiceImpl implements LoanSalesService{
 	/* (non-Javadoc)
 	 * @see org.rage.loansales.service.LoanSalesService#getAllByPersonId(java.lang.String)
 	 */
-	public List<LoanSales> getAllByPersonId(String personId) {
+	public List<Loan> getAllByPersonId(String personId) {
 		return this.loanSalesManager.getAllByPerson(personId);
 	}
 }

@@ -2,8 +2,8 @@ package org.rage.loansales.controller;
 
 import java.util.List;
 
-import org.rage.loadsales.model.LoanSales;
-import org.rage.loadsales.model.ServiceResponse;
+import org.rage.loan.model.Loan;
+import org.rage.loan.model.ServiceResponse;
 import org.rage.loansales.service.LoanSalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class LoanSalesController {
 	 * @return ServiceResponse
 	 * */
 	@RequestMapping(value="save",method=RequestMethod.POST, consumes="application/json")
-	public @ResponseBody ServiceResponse saveLoanSales(@RequestBody LoanSales loan){
+	public @ResponseBody ServiceResponse saveLoanSales(@RequestBody Loan loan){
 		return this.loanSalesService.saveLoanSales(loan);
 	}
 	
@@ -41,7 +41,7 @@ public class LoanSalesController {
 	 * @return ServiceResponse
 	 * */
 	@RequestMapping(value="update",method=RequestMethod.POST)
-	public @ResponseBody ServiceResponse updateLoanSales(@RequestBody LoanSales loanSales){
+	public @ResponseBody ServiceResponse updateLoanSales(@RequestBody Loan loanSales){
 		return this.loanSalesService.updateLoanSales(loanSales);
 	}
 	
@@ -63,7 +63,7 @@ public class LoanSalesController {
 	 * @return ServiceResponse
 	 * */
 	@RequestMapping(method=RequestMethod.GET, value="get/{id}")
-	public @ResponseBody LoanSales get(@PathVariable("id") String id){
+	public @ResponseBody Loan get(@PathVariable("id") String id){
 		return this.loanSalesService.getLoanSales(id);
 	}
 
@@ -73,7 +73,7 @@ public class LoanSalesController {
 	 * @return list
 	 * */
 	@RequestMapping(method=RequestMethod.GET, value="list")
-	public @ResponseBody List<LoanSales> list(){
+	public @ResponseBody List<Loan> list(){
 		return this.loanSalesService.getAllLoanSales();
 	}
 
@@ -84,7 +84,7 @@ public class LoanSalesController {
 	 * @return list
 	 * */
 	@RequestMapping(method=RequestMethod.GET, value="list/{personId}")
-	public @ResponseBody List<LoanSales> listByPersonId(@PathVariable("personId") String personId){
+	public @ResponseBody List<Loan> listByPersonId(@PathVariable("personId") String personId){
 		return this.loanSalesService.getAllByPersonId(personId);
 	}
 	
