@@ -37,7 +37,8 @@ public class LoanSalesManagerImpl implements LoanSalesManager {
 	}
 	
 	@Autowired
-	@Qualifier("mongoLoanDataProvider")
+	//@Qualifier("mongoLoanDataProvider")
+	@Qualifier("hazelcastDataProvider")
 	public void setDataProvider(final DataProvider<Loan> dataProvider){
 		this.dataProvider = dataProvider;
 	}

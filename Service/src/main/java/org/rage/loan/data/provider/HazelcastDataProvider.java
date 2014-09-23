@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.rage.loan.exception.RageDataException;
 import org.rage.loan.helper.LoanHelper;
 import org.rage.loan.model.Loan;
@@ -23,12 +25,13 @@ import com.hazelcast.core.HazelcastInstance;
  * */
 @Component("hazelcastDataProvider")
 public class HazelcastDataProvider implements DataProvider<Loan> {
-
+	static final Logger logger = LogManager.getLogger(HazelcastDataProvider.class.getName());
 	private transient HazelcastInstance instance;
 	private transient String loanSalesMapName;
 	
 	public ServiceResponse save(Loan loanSales) throws RageDataException{
 		String id  = null;
+		logger.info("saving loan");
 		try{
 			ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 			id = LoanHelper.addNewData(loanSales, Boolean.TRUE);
@@ -40,6 +43,7 @@ public class HazelcastDataProvider implements DataProvider<Loan> {
 	}
 	
 	public ServiceResponse update(Loan loanSales) throws RageDataException{
+		logger.info("updating loan");
 		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 		Loan old = map.get(loanSales.getId());
 		BeanUtils.copyProperties(loanSales, old, new String[]{"id","date"});
@@ -48,11 +52,13 @@ public class HazelcastDataProvider implements DataProvider<Loan> {
 	}
 	
 	public Loan get(String id){
+		logger.info("getById loan");
 		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 		return map.get(id);
 	}
 	
 	public ServiceResponse delete(String id){
+		logger.info("deleting loan");
 		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 		map.remove(id);
 		return new ServiceResponse(Boolean.TRUE, null);
@@ -64,6 +70,7 @@ public class HazelcastDataProvider implements DataProvider<Loan> {
 	 * @return ArrayList<LoanSales>
 	 * */
 	public List<Loan> getAll() {
+		logger.info("getall loans");
 		ConcurrentMap<String, Loan> map = instance.getMap(loanSalesMapName);
 		return new ArrayList<Loan>(map.values());
 	}

@@ -13,6 +13,8 @@
 	<properties>
 		<hazelcast.version>3.2.5</hazelcast.version>
 		<spring.version>4.0.6.RELEASE</spring.version>
+		<reader.version>0.0.1</reader.version>
+		<apache.log4j>2.0.2</apache.log4j>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -20,18 +22,27 @@
 		<module>Service</module>
 		<module>Deploy</module>
 	</modules>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.rage.loan</groupId>
 			<artifactId>loan-model</artifactId>
-			<version>1.0.0</version>
+			<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.rage.manifest</groupId>
+			<artifactId>reader</artifactId>
+			<version>${reader.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
@@ -87,5 +98,46 @@
 			<version>2.3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${apache.log4j}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${apache.log4j}</version>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Build-Operating-System>${os.name}</Build-Operating-System>
+							<Build-Operating-System-Architecture>${os.arch}</Build-Operating-System-Architecture>
+							<Build-Operating-System-Version>${os.version}</Build-Operating-System-Version>
+							<Built-By>${user.name}</Built-By>
+							<Build-Directory>${project.build.directory}</Build-Directory>
+							<Build-Time>${maven.build.timestamp}</Build-Time>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<organization>
+		<name>Rage</name>
+		<url>http://rageco.info</url>
+	</organization>
 </project>
