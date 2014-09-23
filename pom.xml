@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<version>1.0.0</version>
 
-	<name>Loan Services</name>
+	<name>Loan and Sales Services</name>
 	<url>http://loan.rageco.info</url>
 
 	<properties>

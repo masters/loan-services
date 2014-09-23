@@ -13,7 +13,7 @@
 	<packaging>jar</packaging>
 	<version>1.0.0</version>
 
-	<name>Loan Services Core</name>
+	<name>Loan and Sales Services - Core</name>
 	<url>http://loan.rageco.info</url>
 
 	<dependencies>

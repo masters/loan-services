@@ -13,7 +13,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 
-	<name>Loan-Services-Deploy</name>
+	<name>Loan and Sales Services - Deploy</name>
 	<url>http://loan.rageco.info</url>
 
 	<dependencies>
