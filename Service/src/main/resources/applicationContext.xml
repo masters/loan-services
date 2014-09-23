@@ -25,14 +25,14 @@
 	        </bean>
 	    </constructor-arg>
 	</bean>
-	<!-- 
+	
 	<bean id="mDataFactory" class="org.rage.loan.factory.MongoDataFactory" init-method="connect" destroy-method="shutdown" 
 		lazy-init="false">
 		<property name="url" value="#{systemProperties['mongo.db.url']}"/>
 		<property name="port" value="#{systemProperties['mongo.db.port']}"/>
 		<property name="db" value="#{systemProperties['mongo.db.name']}"/>
 	</bean>
-	 -->
+	
 	<bean id="loanSalesService" class="org.rage.loansales.service.LoanSalesServiceImpl">
 		<property name="loanSalesManager" ref="loanManager"/>
 	</bean>

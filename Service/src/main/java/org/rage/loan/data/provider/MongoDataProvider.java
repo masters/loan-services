@@ -35,8 +35,8 @@ public class MongoDataProvider implements DataProvider<Loan> {
 	private final static String PROPERTY_NAME_ID = "_id"; 
 	private final static String PERSON_ID= "personId";
 	
-	//@Autowired
-	//@Qualifier("mDataFactory")
+	@Autowired
+	@Qualifier("mDataFactory")
 	public void setMongoDataFactory(DataFactory<DB, DBCollection> mongoDataFactory){
 		this.mongoDataFactory = mongoDataFactory;	
 	}

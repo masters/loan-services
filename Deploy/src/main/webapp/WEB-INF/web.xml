@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-	<display-name>Loan Sales Services</display-name>
+	<display-name>Loan Services</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -23,6 +23,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+
 	<servlet>
 		<servlet-name>AppVersion</servlet-name>
 		<servlet-class>org.rage.manifest.reader.AppVersion</servlet-class>
