@@ -11,8 +11,8 @@
 	<artifactId>loan-services</artifactId>
 	<packaging>pom</packaging>
 
-	<name>Loan and Sales Services</name>
-	<url>http://loan.rageco.info</url>
+	<name>Loan Services</name>
+	<url>http://loan.hmendoza.com</url>
 
 	<modules>
 		<module>Service</module>

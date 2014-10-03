@@ -9,15 +9,14 @@ import org.rage.loan.model.ServiceResponse;
 import org.rage.loansales.manager.LoanSalesManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class LoanSalesServiceImpl implements LoanSalesService{
+public class LoanSalesServiceImpl implements LoanSalesService {
 
 	private transient LoanSalesManager loanSalesManager;
-	
+
 	@Autowired
 	public void setLoanSalesManager(LoanSalesManager loanSalesManager) {
 		this.loanSalesManager = loanSalesManager;
 	}
-
 
 	public ServiceResponse saveLoanSales(Loan loanSales) {
 		try {
@@ -27,7 +26,7 @@ public class LoanSalesServiceImpl implements LoanSalesService{
 			return LoanHelper.buildErrorResponse(e);
 		}
 	}
-	
+
 	public ServiceResponse updateLoanSales(Loan loanSales) {
 		try {
 			return loanSalesManager.updateLoanSales(loanSales);
@@ -36,23 +35,24 @@ public class LoanSalesServiceImpl implements LoanSalesService{
 		}
 	}
 
-	public Loan getLoanSales(String id){
+	public Loan getLoanSales(String id) {
 		return loanSalesManager.getLoanSales(id);
 	}
-
 
 	public ServiceResponse deleteLoanSales(String id) {
 		return loanSalesManager.deleteLoanSales(id);
 	}
 
-
 	public List<Loan> getAllLoanSales() {
 		return loanSalesManager.getAllLoanSales();
 	}
 
-
-	/* (non-Javadoc)
-	 * @see org.rage.loansales.service.LoanSalesService#getAllByPersonId(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.rage.loansales.service.LoanSalesService#getAllByPersonId(java.lang
+	 * .String)
 	 */
 	public List<Loan> getAllByPersonId(String personId) {
 		return this.loanSalesManager.getAllByPerson(personId);
