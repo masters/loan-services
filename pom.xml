@@ -5,14 +5,13 @@
 		<artifactId>parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	
+
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>loan-services</artifactId>
 	<packaging>pom</packaging>
 
 	<name>Loan Services</name>
-	<url>http://loan.hmendoza.com</url>
 
 	<modules>
 		<module>Service</module>
@@ -26,7 +25,7 @@
 			<artifactId>loan-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.rage.manifest</groupId>
 			<artifactId>reader</artifactId>
@@ -76,7 +75,7 @@
 			<artifactId>log4j-core</artifactId>
 			<version>${apache.log4j}</version>
 		</dependency>
-		
+
 		<!-- DB and Cache dependencies -->
 		<dependency>
 			<groupId>com.hazelcast</groupId>
@@ -95,7 +94,7 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>2.12.3</version>
 		</dependency>
-				
+
 		<!-- Testing Dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -112,4 +111,18 @@
 		</dependency>
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>releases-rage-s3</id>
+			<name>Releases S3 Rage</name>
+			<url>https://s3.amazonaws.com/m2-repo/release/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
